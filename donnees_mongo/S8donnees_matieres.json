@@ -1,0 +1,78 @@
+{
+    "_id": "LANG801",
+    "nom": "Anglais",
+    "coef": 3
+}
+
+{
+    "_id": "SHES802",
+    "nom": "Système de Management Intégré QSE",
+    "coef": 1.5
+}
+
+{
+    "_id": "SHES803",
+    "nom": "Théorie des organisations",
+    "coef": 1.5
+}
+
+{
+    "_id": "PROJ801",
+    "nom": "Stage assistant ingénieur",
+    "coef": 6
+}
+
+{
+    "_id": "DATA831",
+    "nom": "Big data",
+    "coef": 1
+}
+
+{
+    "_id": "DATA832",
+    "nom": "Machine Learning",
+    "coef": 2.5
+}
+
+{
+    "_id": "INFO831",
+    "nom": "Informatique décisionnelle",
+    "coef": 2.5
+}
+
+{
+    "_id": "PROJ831",
+    "nom": "Projet Informatique Données et Usages",
+    "coef": 1.5
+}
+
+{
+    "_id": "PROJ832",
+    "nom": "Flux de Donnéées et Accès Concurrents",
+    "coef": 1.5
+}
+
+{
+    "_id": "INFO832",
+    "nom": "Qualité et tests logiciel",
+    "coef": 2.5
+}
+
+{
+    "_id": "INFO833",
+    "nom": "Systèmes distibués à large échelle",
+    "coef": 2.5
+}
+
+{
+    "_id": "INFO834",
+    "nom": "Base de données distribuées",
+    "coef": 2.5
+}
+
+{
+    "_id": "ISOC831",
+    "nom": "Dimension métiers",
+    "coef": 1.5
+}
+

@@ -1,0 +1,43 @@
+{
+    "_id": "UE701",
+    "nom": "Passerelle vers le parcours professionnel",
+    "coef": 6,
+    "id_matiere": [
+        "LANG701", 
+        "SHES703",
+        "SHES704"
+    ]
+}
+
+{
+    "_id": "UE702",
+    "nom": "Mathématiques et Données",
+    "coef": 8,
+    "id_matiere": [
+        "DATA7321", 
+        "INFO731",
+        "MATH731"
+    ]
+}
+
+{
+    "_id": "UE703",
+    "nom": "Informatique et Conception",
+    "coef": 7,
+    "id_matiere": [
+        "INFO732", 
+        "INFO743",
+        "PROJ731"
+    ]
+}
+
+{
+    "_id": "UE704",
+    "nom": "Visualisation et Gouvernance",
+    "coef": 9,
+    "id_matiere": [
+        "DATA732", 
+        "INFO734",
+        "ISOC731"
+    ]
+}
