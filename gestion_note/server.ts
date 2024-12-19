@@ -17,6 +17,8 @@ const [user, password]: string[] = loginFileContent.split('\n').map(line => line
 
 // MongoDB connection details
 const address: string = "emmaxelle.ygq51.mongodb.net";
+console.log('User : ', user);
+console.log('Mot de passe : ', password);
 
 // MongoDB URI with authentication
 const uri: string = `mongodb://${user}:${password}@${address}:27017/?authMechanism=DEFAULT&authSource=admin`;
