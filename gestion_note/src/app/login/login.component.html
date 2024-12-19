@@ -1,9 +1,7 @@
-<!-- Token d'authentification pour le mdp; regarder sur angular -->
-
 <div class="login-page">
   <div class="form">
     <h2>Page de Connexion</h2>
-    <form (ngSubmit)="handleSubmit()">
+    <form (ngSubmit)="onLogin()">
       <div>
         <label for="email">Email:</label>
         <input 
@@ -22,7 +20,10 @@
           name="password" 
           required />
       </div>
-      <button type="submit">Se connecter</button>
+      <div class="button-container">
+        <button type="submit">Se connecter</button>
+        <button type="button" (click)="navigateToSignup()">Créer un compte</button>
+      </div>
     </form>
   </div>
 </div>
