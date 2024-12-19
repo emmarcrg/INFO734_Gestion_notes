@@ -1,0 +1,51 @@
+<div class="saisie-page">
+  <div class="form">
+    <h2>Saisie des notes</h2>
+    <!-- Selection du semestre -->
+    <div class="selection-semestre">
+      <button type="button" (click)="selectionner_semestre(7)">Semestre 7</button>
+      <button type="button" (click)="selectionner_semestre(8)">Semestre 8</button>
+    </div>
+
+
+    <!-- Selection de la matiere -->
+    <div class="selection-matiere">
+      <label for="matiere">Sélectionnez la matière :</label>
+      <select
+        id="matiere"
+        [(ngModel)]="matiere_selectionnee"
+        [disabled]="!semestre_selectionne">
+        <option *ngFor="let matiere of recuperer_matieres()" [value]="matiere">
+          {{ matiere }}
+        </option>
+        <option *ngIf="!semestre_selectionne" disabled>
+          Veuillez d'abord sélectionner un semestre
+        </option>
+      </select>
+    </div>
+
+    <!-- Formulaire pour saisir la note -->
+    <div class="saisie-note">
+      <label for="note">Saisissez la note :</label>
+      <input
+        type="number"
+        id="note"
+        [(ngModel)]="note"
+        [disabled]="!matiere_selectionnee || !semestre_selectionne" />
+    </div>
+
+    <!-- Bouton pour soumettre -->
+    <button
+      type="button"
+      (click)="handleSubmit()"
+      [disabled]="!matiere_selectionnee || !note">
+      Valider
+    </button>
+
+    <!-- Affichage du message de confirmation ou d'erreur -->
+    <div *ngIf="message" class="message">
+      {{ message }}
+    </div>
+    
+  </div>
+</div>

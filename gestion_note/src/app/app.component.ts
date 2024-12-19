@@ -2,13 +2,15 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
+import { SaisieComponent } from './page_saisie_note/saisie_note.component';
+import { AffichageComponent } from './page_affichage_notes/affichage_note.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   standalone: true,
-  imports: [CommonModule, FormsModule, LoginComponent],
+  imports: [CommonModule, FormsModule, LoginComponent, SaisieComponent, AffichageComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppComponent {
