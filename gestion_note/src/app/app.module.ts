@@ -3,20 +3,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { AccueilComponent } from './page_accueil/accueil/accueil.component';
 import { SaisieComponent } from './page_saisie_note/saisie_note.component';
-import { AppRoutingModule } from './app-routing.module';
+import { AffichageComponent } from './page_affichage_notes/affichage_note.component';
+
 
 @NgModule({
-  imports : [
-    LoginComponent,
-    AppComponent,
-    SaisieComponent,
+  imports: [
     BrowserModule,
-    AppRoutingModule,
-    FormsModule  // Modules à importer
+    LoginComponent,
+    AccueilComponent,
+    SaisieComponent,
+    AffichageComponent,
+    AppComponent,
+    FormsModule
   ],
-
   providers: [],
-  //bootstrap: [AppComponent]
 })
 export class AppModule { }

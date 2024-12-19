@@ -2,13 +2,14 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule} from '@angular/router';
 
 @Component({
   selector: 'app-saisie_note',
   templateUrl: './saisie_note.component.html',
   styleUrls: ['./saisie_note.component.css'],
   standalone: true,
-  imports: [CommonModule, FormsModule]
+  imports: [CommonModule, FormsModule, RouterModule]
 })
 
 

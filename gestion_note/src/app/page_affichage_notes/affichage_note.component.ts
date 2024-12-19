@@ -2,6 +2,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule} from '@angular/router';
 
 interface Matiere {
   nom: string;
@@ -28,7 +29,7 @@ interface UE {
   templateUrl: './affichage_note.component.html',
   styleUrls: ['./affichage_note.component.css'],
   standalone: true,
-  imports: [CommonModule, FormsModule]
+  imports: [CommonModule, FormsModule, RouterModule]
 })
 
 export class AffichageComponent {

@@ -15,12 +15,12 @@ export class LoginComponent {
   email: string = '';
   password: string = '';
 
-  constructor(private router:Router){}
+  // constructor(private router:Router){}
 
   handleSubmit() {
     console.log('Email:', this.email);
     console.log('Password:', this.password);
-    this.router.navigate(['/page_saisie_note']);
+    // this.router.navigate(['/page_saisie_note']);
   }
 
   
