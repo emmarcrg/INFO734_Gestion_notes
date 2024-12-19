@@ -9,9 +9,10 @@ import { User } from './user';
 })
 export class AuthService {
   constructor(private http: HttpClient) { }
+  private apiUrl = 'http://localhost:3000/login'; // URL de votre serveur backend
 
   login(username: string, password: string): Observable<{ message: string }> {
-    return this.http.post<{ message: string }>('/login', { username, password })
+    return this.http.post<{ message: string }>(this.apiUrl, { username, password })
       .pipe(
         tap(response => {
           console.log('Login successful', response);
