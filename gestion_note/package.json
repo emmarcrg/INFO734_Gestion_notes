@@ -1,13 +1,15 @@
 {
   "name": "gestion-note",
   "version": "0.0.0",
+  "type": "module", 
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:gestion_note": "node dist/gestion_note/server/server.mjs"
+    "serve:ssr": "npm run build:ssr && node dist/gestion_note/server/server.mjs",
+    "build:ssr": "ng build --prod && ng run gestion_note:server:production"
   },
   "private": true,
   "dependencies": {
@@ -18,9 +20,10 @@
     "@angular/forms": "^18.2.0",
     "@angular/platform-browser": "^18.2.0",
     "@angular/platform-browser-dynamic": "^18.2.0",
-    "@angular/platform-server": "^18.2.0",
+    "@angular/platform-server": "^18.2.13",
     "@angular/router": "^18.2.0",
     "@angular/ssr": "^18.2.6",
+    "@nguniversal/express-engine": "^7.0.1",
     "express": "^4.18.2",
     "mongoose": "^8.9.2",
     "rxjs": "~7.8.0",
@@ -41,6 +44,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.5.2"
+    "typescript": "~5.5.2",
+    "ts-node": "^10.0.0"
   }
 }

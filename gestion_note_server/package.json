@@ -1,15 +1,14 @@
 {
-  "name": "gestion_note_server",
+  "name": "gestion-note-server",
   "version": "1.0.0",
-  "description": "Serveur gestion note",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.1.1",
-    "express": "^4.21.2"
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^8.9.3"
   }
 }

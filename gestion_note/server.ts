@@ -12,6 +12,7 @@ const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, '../browser');
 const indexHtml = join(serverDistFolder, 'index.server.html');
 
+
 // Angular SSR Engine
 const commonEngine = new CommonEngine();
 

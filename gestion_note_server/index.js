@@ -3,10 +3,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
-import { APP_BASE_HREF } from '@angular/common';
-import { CommonEngine } from '@angular/ssr';
 import fs from 'fs';
-import bootstrap from '../gestion_note/src/main.server';
 import noteRoutes from './routes/noteRoutes.js';
 import matiereRoutes from './routes/matiereRoutes.js';
 
@@ -20,7 +17,7 @@ try {
   mongoUri = `mongodb+srv://${username}:${password}@emmaxelle.ygq51.mongodb.net/gestion_notes?retryWrites=true&w=majority`;
 } catch (err) {
   console.error('Erreur de lecture du fichier login.txt :', err);
-  process.exit(1); 
+  process.exit(1);
 }
 
 const PORT = process.env.PORT || 4000;
@@ -36,28 +33,16 @@ mongoose
   .catch((err) => console.error('Erreur de connexion à MongoDB :', err));
 
 // Routes API
-app.use('/api/notes', noteRoutes); // Utiliser les routes des notes
-app.use('/api/matieres', matiereRoutes); // Utiliser les routes des matières
+app.use('/api/notes', noteRoutes);
+app.use('/api/matieres', matiereRoutes);
 
-// Dossiers Angular SSR
-const serverDistFolder = dirname(fileURLToPath(import.meta.url));
-const browserDistFolder = resolve(serverDistFolder, '../gestion_note/dist/browser');
-const indexHtml = join(serverDistFolder, '../gestion_note/dist/index.server.html');
-const commonEngine = new CommonEngine();
+// Servir les fichiers Angular compilés
+const browserDistFolder = resolve(dirname(fileURLToPath(import.meta.url)), '../gestion_note/dist/browser');
+app.use(express.static(browserDistFolder));
 
-app.use(express.static(browserDistFolder, { maxAge: '1y' }));
-
-app.get('**', (req, res, next) => {
-  commonEngine
-    .render({
-      bootstrap,
-      documentFilePath: indexHtml,
-      url: `${req.protocol}://${req.headers.host}${req.originalUrl}`,
-      publicPath: browserDistFolder,
-      providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }],
-    })
-    .then((html) => res.send(html))
-    .catch((err) => next(err));
+// Rediriger toutes les autres routes vers Angular
+app.get('*', (req, res) => {
+  res.sendFile(join(browserDistFolder, 'index.html'));
 });
 
 app.listen(PORT, () => {
