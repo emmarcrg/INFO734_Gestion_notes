@@ -10,7 +10,8 @@
   },
   "files": [
     "src/main.ts",
-    "../gestion_note_server/index.js"
+    "src/main.server.ts",
+    "server.ts"
   ],
   "include": [
     "src/**/*.d.ts"

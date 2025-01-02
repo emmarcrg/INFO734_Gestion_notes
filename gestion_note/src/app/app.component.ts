@@ -9,6 +9,7 @@ import { AcceuilComponent } from './acceuil/acceuil.component';
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
-    imports: [CommonModule, FormsModule, RouterModule, LoginComponent, AcceuilComponent]
+    imports: [FormsModule, RouterModule, LoginComponent, AcceuilComponent, CommonModule],
+    standalone: true
 })
 export class AppComponent {}

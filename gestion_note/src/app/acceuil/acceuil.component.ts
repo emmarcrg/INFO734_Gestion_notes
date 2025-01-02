@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
     selector: 'app-acceuil',
     templateUrl: './acceuil.component.html',
     styleUrls: ['./acceuil.component.css'],
-    imports: [CommonModule]
+    imports: [CommonModule],
+    standalone: true
 })
 export class AcceuilComponent {}

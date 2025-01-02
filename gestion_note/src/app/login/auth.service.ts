@@ -8,7 +8,7 @@ import { User } from './user';
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private http: HttpClient) { }
+  constructor(private http : HttpClient) { }
   private apiUrl = 'http://localhost:3000/login'; // URL de votre serveur backend
 
   login(username: string, password: string): Observable<{ message: string }> {
