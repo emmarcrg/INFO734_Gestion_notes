@@ -1,45 +1,50 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const path = require('path');
-const fs = require('fs');
-const { MongoClient } = require('mongodb');
+import express from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import { fileURLToPath } from 'node:url';
+import { dirname, join, resolve } from 'node:path';
+import fs from 'fs';
+import noteRoutes from './routes/noteRoutes.js';
+import matiereRoutes from './routes/matiereRoutes.js';
 
-const app = express();
-const port = 3000;
+const filePath = join(dirname(fileURLToPath(import.meta.url)), 'login.txt');
+let mongoUri = '';
 
-// MongoDB connection details
-const address = "emmaxelle.ygq51.mongodb.net";
-const uri = `mongodb+srv://${address}`;
-console.log('MongoDB URI: ', uri);
-
-// Initialize MongoDB client
-const client = new MongoClient(uri);
-
-// Database and collection variables
-let usersCollection;
-
-// Fonction pour se connecter à MongoDB
-async function connectToMongo() {
-    try {
-        console.log('Attempting to connect to MongoDB...');
-        await client.connect();
-        console.log('Connected to MongoDB');
-        const db = client.db('Gestion_notes'); // Remplacez 'Gestion_notes' par le nom de votre base de données
-        usersCollection = db.collection('eleves'); // Remplacez 'eleves' par le nom de votre collection
-        console.log('Database and collection initialized');
-    } catch (err) {
-        console.error('Failed to connect to MongoDB', err);
-        process.exit(1);
-    }
+try {
+  const credentials = fs.readFileSync(filePath, 'utf8').split('\n');
+  const username = credentials[0].trim();
+  const password = credentials[1].trim();
+  mongoUri = `mongodb+srv://${username}:${password}@emmaxelle.ygq51.mongodb.net/gestion_notes?retryWrites=true&w=majority`;
+} catch (err) {
+  console.error('Erreur de lecture du fichier login.txt :', err);
+  process.exit(1);
 }
 
-// Appel de la fonction pour se connecter à MongoDB
-connectToMongo().catch(console.error);
+const PORT = process.env.PORT || 4000;
+const app = express();
 
-// Middleware pour parser les requêtes
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
+app.use(express.json());
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+// Connexion à MongoDB
+mongoose
+  .connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Connexion à MongoDB réussie !'))
+  .catch((err) => console.error('Erreur de connexion à MongoDB :', err));
+
+// Routes API
+app.use('/api/notes', noteRoutes);
+app.use('/api/matieres', matiereRoutes);
+
+// Servir les fichiers Angular compilés
+const browserDistFolder = resolve(dirname(fileURLToPath(import.meta.url)), '../gestion_note/dist/browser');
+app.use(express.static(browserDistFolder));
+
+// Rediriger toutes les autres routes vers Angular
+app.get('*', (req, res) => {
+  res.sendFile(join(browserDistFolder, 'index.html'));
+});
+
+app.listen(PORT, () => {
+  console.log(`Serveur en cours d'exécution sur http://localhost:${PORT}`);
 });

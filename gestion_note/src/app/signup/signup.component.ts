@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
+/*
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -24,4 +25,4 @@ export class LoginComponent {
   navigateToSignup() {
     this.router.navigate(['/signup']); // Utilisez le routeur pour naviguer vers la page signup
   }
-}
+}*/

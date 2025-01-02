@@ -1,0 +1,78 @@
+.affichage_notes-page {
+  width: 100%;
+  height: 100vh;
+  background: #eec0a4 !important;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.affichage-notes-container {
+  background: rgba(255, 255, 255, 0.8);  /* Fond blanc avec transparence */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  max-width: 1200px;  /* Limite la largeur */
+  width: 100%;
+  box-sizing: border-box;  /* Assure que le padding est inclus dans la largeur totale */
+}
+
+.affichage-notes-table {
+  background: rgba(255, 255, 255, 0.9); /* Fond blanc avec transparence */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1200px;  /* Limite la largeur du tableau pour de meilleures marges */
+  box-sizing: border-box;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse; /* Pour éviter les espaces entre les cellules */
+  margin-top: 20px;
+}
+
+thead {
+  background-color: #e79968;  /* Couleur d'arrière-plan pour l'en-tête */
+  color: white;
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;  /* Ajoute une bordure légère */
+}
+
+th {
+  font-weight: bold;
+}
+
+td {
+  background-color: #f9f9f9;  /* Fond légèrement gris pour les cellules */
+}
+
+td:hover {
+  background-color: #f0f0f0; /* Survol des cellules pour plus d'interaction */
+}
+
+.selection-semestre {
+  display: flex; /* Utilise flexbox pour aligner les boutons horizontalement */
+  gap: 10px; /* Ajoute un petit espacement entre les boutons */
+}
+
+
+.selection-semestre button {
+  padding: 10px 20px;
+  margin-right: 15px;
+  background-color: #da804d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.selection-semestre button:hover {
+  background-color: #e6735e;
+}

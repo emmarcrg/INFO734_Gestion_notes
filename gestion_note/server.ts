@@ -1,43 +1,43 @@
-import express, { Request, Response, NextFunction } from 'express';
-import bodyParser from 'body-parser';
-import { MongoClient, Db, Collection } from 'mongodb';
+import express from 'express';
+import { fileURLToPath } from 'node:url';
+import { dirname, join, resolve } from 'node:path';
+import { APP_BASE_HREF } from '@angular/common';
+import { CommonEngine } from '@angular/ssr';
+import bootstrap from './src/main.server';
 
 const app = express();
-const port = 3000;
 
-// MongoDB connection details
-const address = "emmaxelle.ygq51.mongodb.net";
-const uri = `mongodb+srv://${address}`;
-console.log('MongoDB URI: ', uri);
+// Dossiers pour le SSR
+const serverDistFolder = dirname(fileURLToPath(import.meta.url));
+const browserDistFolder = resolve(serverDistFolder, '../browser');
+const indexHtml = join(serverDistFolder, 'index.server.html');
 
-// Initialize MongoDB client
-const client = new MongoClient(uri);
 
-// Database and collection variables
-let usersCollection: Collection;
+// Angular SSR Engine
+const commonEngine = new CommonEngine();
 
-// Fonction pour se connecter à MongoDB
-async function connectToMongo(): Promise<void> {
-    try {
-        console.log('Attempting to connect to MongoDB...');
-        await client.connect();
-        console.log('Connected to MongoDB');
-        const db: Db = client.db('Gestion_notes'); // Remplacez 'Gestion_notes' par le nom de votre base de données
-        usersCollection = db.collection('eleves'); // Remplacez 'eleves' par le nom de votre collection
-        console.log('Database and collection initialized');
-    } catch (err) {
-        console.error('Failed to connect to MongoDB', err);
-        process.exit(1);
-    }
-}
+app.set('view engine', 'html');
+app.set('views', browserDistFolder);
 
-// Appel de la fonction pour se connecter à MongoDB
-connectToMongo().catch(console.error);
+// Middleware pour servir les fichiers statiques du frontend Angular
+app.use(express.static(browserDistFolder, { maxAge: '1y', index: 'index.html' }));
 
-// Middleware pour parser les requêtes
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+// Routes pour le SSR Angular
+app.get('**', (req, res, next) => {
+  commonEngine
+    .render({
+      bootstrap,
+      documentFilePath: indexHtml,
+      url: `${req.protocol}://${req.headers.host}${req.originalUrl}`,
+      publicPath: browserDistFolder,
+      providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }],
+    })
+    .then((html) => res.send(html))
+    .catch((err) => next(err));
+});
 
+// Lancement du serveur SSR
+const port = process.env['PORT'] || 4000;
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Frontend SSR server is running at http://localhost:${port}`);
 });
