@@ -45,7 +45,7 @@ Thumbs.db
 login.txt
 gestion_note_server/login.txt
 gestion_note_server/node_modules/
-gestion_note/node_modules/
+gestion_note/node_modules
 gestion_note/server
 gestion_note/dist
 
