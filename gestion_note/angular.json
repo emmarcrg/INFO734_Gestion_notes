@@ -30,10 +30,10 @@
               "src/styles.css"
             ],
             "scripts": [],
-            "server": "src/main.server.ts",  // Assurez-vous que cela est correct
+            "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {
-              "entry": "server.ts"  // Utilisez le bon fichier d'entrée pour SSR
+              "entry": "server.ts" 
             }
           },
           "configurations": {

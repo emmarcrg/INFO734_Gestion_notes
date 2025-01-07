@@ -63,6 +63,7 @@ typings/
 
 # VS Code directory
 .vscode/
+gestion_note/.vscode/
 
 # IDEs and editors
 .idea/
@@ -82,4 +83,4 @@ login.txt
 
 # Fichiers nodes_modules
 gestion_note_server/node_modules/
-.vscode/
+gestion_note/node_modules/

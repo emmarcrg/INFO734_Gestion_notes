@@ -1,28 +1,32 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 
-/*
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.css'],
   standalone: true,
-  imports: [CommonModule, FormsModule]  // Assurez-vous d'importer FormsModule ici
+  imports: [FormsModule] // Importation du module de formulaires ici
 })
-export class LoginComponent {
+export class SignupComponent {
   email: string = '';
   password: string = '';
+  confirmPassword: string = '';
 
   constructor(private router: Router) {}
 
-  handleSubmit() {
-    console.log('Email:', this.email);
-    console.log('Password:', this.password);
+  onSignup() {
+    if (this.password === this.confirmPassword) {
+      console.log('Inscription confirmée');
+      this.navigateToAccueil();
+    } else {
+      console.error('Erreur : Confirmation du mot de passe incorrecte');
+      alert('Confirmation du mot de passe invalide');
+    }
   }
 
-  navigateToSignup() {
-    this.router.navigate(['/signup']); // Utilisez le routeur pour naviguer vers la page signup
+  navigateToAccueil() {
+    this.router.navigate(['/accueil']);
   }
-}*/
+}

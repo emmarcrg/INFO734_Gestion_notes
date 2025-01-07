@@ -7,23 +7,23 @@ import { SaisieComponent } from './page_saisie_note/saisie_note.component';
 import { AffichageComponent } from './page_affichage_notes/affichage_note.component';
 import { provideHttpClient  } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { AcceuilComponent } from './acceuil/acceuil.component';
 import { AppComponent } from './app.component';
+import { SignupComponent } from './signup/signup.component';
 
 
 @NgModule({
+
   imports: [BrowserModule, 
     FormsModule,
     AppRoutingModule,
     LoginComponent,
-    AcceuilComponent,
+    AccueilComponent,
     LoginComponent,
     AccueilComponent,
     SaisieComponent,
     AffichageComponent,
     AppComponent,
-    FormsModule
-    //SignupComponent
+    SignupComponent
   ],   
   providers: [provideHttpClient()],
 })

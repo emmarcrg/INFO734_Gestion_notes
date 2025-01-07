@@ -11,29 +11,36 @@ import { AuthService } from './auth.service';  // On fait en sorte de créer un 
     standalone : true,
     imports: [CommonModule, FormsModule]
 })
+
 export class LoginComponent {
   email: string = '';
   password: string = '';
 
+  predefinedUsers: { email: string, password: string }[] = [
+    { email: 'axelle@example.com', password: '0000' },
+    { email: 'emma@example.com', password: '1234' }
+  ];
+
   constructor(private authService: AuthService, private router: Router) {}
 
   onLogin() {
-    this.authService.login(this.email, this.password).subscribe({
-      next: () => {
-        console.log('Logged in successfully');
-        this.navigateToAcceuil();
-      },
-      error: (error) => {
-        console.error('Error logging in:', error);
-        alert('Invalid username or password');
-      }
-    });
-  }
+   
+    const user = this.predefinedUsers.find(user => user.email === this.email && user.password === this.password);
+    if(user) {
+      //this.authService.login(this.email, this.password).subscribe({
+        //next: () => {
 
-  handleSubmit() {
-    console.log('Email:', this.email);
-    console.log('Password:', this.password);
-
+          //console.log('Logged in successfully');
+          this.navigateToAcceuil();
+        //},
+        //error: (error) => {
+        //  console.error('Error logging in:', error);
+          //alert('Invalid username or password');
+        //}
+      //});
+    }else {
+      alert('Invalid username or password');
+    }
   }
 
   navigateToSignup() {
@@ -41,6 +48,6 @@ export class LoginComponent {
   }
 
   navigateToAcceuil(){
-    this.router.navigate(['/acceuil']);
+    this.router.navigate(['/accueil']);
   }
 }

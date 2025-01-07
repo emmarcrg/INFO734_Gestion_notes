@@ -55,9 +55,5 @@ button {
 }
 
 button:hover {
-<<<<<<< HEAD
-  background-color: #f6a986;
-=======
   background-color: #E6735E;
->>>>>>> origin/gestion_notes_mongo
 }
