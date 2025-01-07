@@ -37,6 +37,12 @@ input[type="password"] {
   box-sizing: border-box;  /* Assure que le padding est inclus dans la largeur totale */
 }
 
+.button-container { 
+  display: flex; 
+  justify-content: space-between; /* Espace entre les boutons */ 
+  gap: 10px; /* Espace entre les boutons */ 
+}
+
 button {
   width: 100%;
   padding: 10px;

@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { SaisieComponent } from './page_saisie_note/saisie_note.component';
 import { AffichageComponent } from './page_affichage_notes/affichage_note.component';
 import { AccueilComponent } from './page_accueil/accueil/accueil.component';
+import { SignupComponent } from './signup/signup.component';
 
 
 @Component({
@@ -21,7 +22,8 @@ import { AccueilComponent } from './page_accueil/accueil/accueil.component';
     SaisieComponent,
     AffichageComponent,
     RouterModule,
-    RouterOutlet
+    RouterOutlet,
+    SignupComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -1,7 +1,7 @@
-<div class="login-page">
+<div class="signup-page">
   <div class="form">
-    <h2>Page de Connexion teste</h2>
-    <form (ngSubmit)="onLogin()">
+    <h2>Créer un Compte</h2>
+    <form (ngSubmit)="onSignup()">
       <div>
         <label for="email">Email:</label>
         <input 
@@ -12,9 +12,13 @@
         <input 
           type="password" id="password" [(ngModel)]="password" name="password" required />
       </div>
+      <div>
+        <label for="confirm-password">Confirmer le Mot de Passe:</label>
+        <input 
+          type="password" id="confirm-password" [(ngModel)]="confirmPassword" name="confirmPassword" required />
+      </div>
       <div class="button-container">
-        <button type="submit" (click)="onLogin()">Se connecter</button> 
-        <button type="button" (click)="navigateToSignup()">Créer un compte</button>
+        <button type="submit">Créer un compte</button>
       </div>
     </form>
   </div>
