@@ -9,7 +9,7 @@ import { NoteService } from '../services/note.service';
   templateUrl: './affichage_note.component.html',
   styleUrls: ['./affichage_note.component.css'],
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule]
+  imports: [CommonModule, FormsModule, RouterModule],
 })
 export class AffichageComponent {
   semestre_selectionne: number | null = null;
@@ -21,36 +21,48 @@ export class AffichageComponent {
 
   matieres_semestre: any[] = [];
   ues: any[] = [];
+  id_eleve: string = '6763e0dc447b0bff6457cc2f'; // Exemple d'ID élève
 
-  // Injection du service
   constructor(private noteService: NoteService) {}
 
-  // Logique pour la sélection du semestre et la récupération des données
   selectionner_semestre(semestre: number): void {
     this.semestre_selectionne = semestre;
-    if (semestre === 7) {
-      // Appeler l'API pour récupérer les données du semestre 7
-      this.noteService.getNotes('eleveId7').subscribe((data) => {
-        this.matieres_semestre = data.matieres; // Assurez-vous que la structure des données correspond à ce que vous attendez
+
+    this.noteService.getNotesEleve(this.id_eleve).subscribe(
+      (data) => {
+        this.matieres_semestre = data.matieres || [];
         this.calculer_statistiques();
         this.regrouper_ues();
-      });
-    } else if (semestre === 8) {
-      // Appeler l'API pour récupérer les données du semestre 8
-      this.noteService.getNotes('eleveId8').subscribe((data) => {
-        this.matieres_semestre = data.matieres;
-        this.calculer_statistiques();
-        this.regrouper_ues();
-      });
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des notes :', error);
+      }
+    );
+  }
+
+  calculer_statistiques(): void {
+    if (this.matieres_semestre.length > 0) {
+      const notes = this.matieres_semestre.map((m: any) => m.note);
+      this.moyenne_eleve =
+        notes.reduce((sum: number, n: number) => sum + n, 0) / notes.length;
+      this.note_plus_haute = Math.max(...notes);
+      this.note_plus_basse = Math.min(...notes);
     }
   }
 
-  // Calcul des statistiques...
-  calculer_statistiques(): void {
-    // Votre logique ici
-  }
-
   regrouper_ues(): void {
-    // Votre logique ici
+    this.ues = this.matieres_semestre.reduce((grouped: any[], matiere: any) => {
+      const ue = grouped.find((u: any) => u.nom === matiere.ue_nom);
+      if (!ue) {
+        grouped.push({
+          nom: matiere.ue_nom,
+          coef: matiere.coef,
+          matieres: [matiere],
+        });
+      } else {
+        ue.matieres.push(matiere);
+      }
+      return grouped;
+    }, []);
   }
 }
