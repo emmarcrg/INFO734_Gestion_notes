@@ -14,7 +14,6 @@ try {
   const credentials = fs.readFileSync(filePath, 'utf8').split('\n');
   const username = credentials[0].trim();
   const password = credentials[1].trim();
-  console.log(username, password);
   mongoUri = `mongodb+srv://${username}:${password}@emmaxelle.ygq51.mongodb.net/Gestion_notes?retryWrites=true&w=majority`;
 } catch (err) {
   console.error('Erreur de lecture du fichier login.txt :', err);

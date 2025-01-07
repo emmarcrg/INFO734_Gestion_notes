@@ -4,9 +4,9 @@ import { ajouterNote, getNotesEleve } from '../controllers/noteController.js';
 const router = express.Router();
 
 // Ajouter une note
-router.post('/ajouterNote:eleveId', ajouterNote);
+router.post('/ajouterNote:id_eleve', ajouterNote);
 
 // Récupérer toutes les notes d'un élève
-router.get('/getNotesEleve:eleveId', getNotesEleve);
+router.get('/getNotesEleve/:id_eleve', getNotesEleve);
 
 export default router;
