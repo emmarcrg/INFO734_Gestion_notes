@@ -8,6 +8,7 @@ import noteRoutes from './routes/noteRoutes.js';
 import matiereRoutes from './routes/matiereRoutes.js';
 import ueRoutes from './routes/ueRoutes.js';
 import semestreRoutes from './routes/semestreRoutes.js';
+import connexionRoutes from './routes/connexionRoutes.js';
 
 const filePath = join(dirname(fileURLToPath(import.meta.url)), 'login.txt');
 let mongoUri = '';
@@ -39,6 +40,7 @@ app.use('/notes', noteRoutes);
 app.use('/matieres', matiereRoutes);
 app.use('/ues', ueRoutes);
 app.use('/semestres', semestreRoutes);
+app.use('/connexion', connexionRoutes);
 
 // Rediriger toutes les autres routes vers Angular
 app.get('*', (req, res) => {
