@@ -1,0 +1,73 @@
+<div class="affichage_notes">
+  <div class="affichage-notes-container">
+    <h2>Affichage des notes</h2>
+    <!-- Selection du semestre -->
+    <div class="selection-semestre">
+      <button type="button" (click)="selectionner_semestre(7)">Semestre 7</button>
+      <button type="button" (click)="selectionner_semestre(8)">Semestre 8</button>
+    </div>
+
+    <!-- Tableau des notes, visible selon le semestre sélectionné -->
+    <div *ngIf="semestre_selectionne !== null">
+      <table>
+        <thead>
+          <tr>
+            <th>Matière / UE</th>
+            <th>Note Élève</th>
+            <th>Moyenne Classe</th>
+            <th>Note Max</th>
+            <th>Note Min</th>
+            <th>Rang Élève</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Affichage des matières du semestre sélectionné -->
+          <tr *ngFor="let matiere of matieres_semestre">
+            <td>{{ matiere.nom }}</td>
+            <td>{{ matiere.note_eleve }}</td>
+            <td>{{ matiere.moyenne_classe }}</td>
+            <td>{{ matiere.note_max }}</td>
+            <td>{{ matiere.note_min }}</td>
+            <td>{{ matiere.rang_eleve }}</td>
+          </tr>
+          <!-- Affichage des statistiques globales -->
+          <tr>
+            <td><strong>Semestre {{ semestre_selectionne }}</strong></td>
+            <td>{{ moyenne_eleve }}</td>
+            <td>{{ moyenne_classe }}</td>
+            <td>{{ note_plus_haute }}</td>
+            <td>{{ note_plus_basse }}</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Affichage des UEs -->
+    <div *ngIf="ues.length > 0">
+      <h3>Unités d'Enseignement</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>UE</th>
+            <th>Moyenne UE</th>
+            <th>Moyenne Classe UE</th>
+            <th>Note Max UE</th>
+            <th>Note Min UE</th>
+            <th>Rang Élève UE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ue of ues">
+            <td>{{ ue.nom }}</td>
+            <td>{{ ue.moyenne_UE }}</td>
+            <td>{{ ue.moyenne_classe_UE }}</td>
+            <td>{{ ue.note_max_ue }}</td>
+            <td>{{ ue.note_min_ue }}</td>
+            <td>{{ ue.rang_eleve_ue }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

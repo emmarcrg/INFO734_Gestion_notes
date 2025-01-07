@@ -5,11 +5,11 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from './auth.service';  // On fait en sorte de créer un objet d'authentification
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
-  standalone: true,
-  imports: [CommonModule, FormsModule]  
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css'],
+    standalone : true,
+    imports: [CommonModule, FormsModule]
 })
 export class LoginComponent {
   email: string = '';
