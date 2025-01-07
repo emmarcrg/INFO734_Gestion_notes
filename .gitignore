@@ -79,3 +79,6 @@ Thumbs.db
 
 # Login file
 login.txt
+
+# Compiled files
+*.node_modules/
