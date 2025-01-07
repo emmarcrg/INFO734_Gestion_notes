@@ -1,71 +1,71 @@
 {
-    "_id": "LANG701",
+    "code": "LANG701",
     "nom": "Anglais",
     "coef": 3
 }
 
 {
-    "_id": "SHES703",
+    "code": "SHES703",
     "nom": "Ressources et dynamique professionnelle",
     "coef": 1.5
 }
 
 {
-    "_id": "SHES704",
+    "code": "SHES704",
     "nom": "Créativité et management de l'innovation",
     "coef": 1.5
 }
 
 {
-    "_id": "DATA731",
+    "code": "DATA731",
     "nom": "Modélisation stochastique",
     "coef": 3
 }
 
 {
-    "_id": "INFO731",
+    "code": "INFO731",
     "nom": "Sécurité et Cryptographie",
     "coef": 3
 }
 
 {
-    "_id": "MATH741",
+    "code": "MATH741",
     "nom": "Probabilité - Statistique",
     "coef": 2
 }
 
 {
-    "_id": "INFO732",
+    "code": "INFO732",
     "nom": "Comportement et Modélisation Dynamique",
     "coef": 2.5
 }
 
 {
-    "_id": "INFO743",
+    "code": "INFO743",
     "nom": "Réseaux et systèmes répartis",
     "coef": 2.5
 }
 
 {
-    "_id": "PROJ731",
+    "code": "PROJ731",
     "nom": "APP Analyse et visualisation de données",
     "coef": 2
 }
 
 {
-    "_id": "DATA732",
+    "code": "DATA732",
     "nom": "Analyse et visualisation de données",
     "coef": 3
 }
 
 {
-    "_id": "INFO734",
+    "code": "INFO734",
     "nom": "Développement Full Stack",
     "coef": 3
 }
 
 {
-    "_id": "ISOC731",
+    "code": "ISOC731",
     "nom": "Economie et gouvernance de la donnée",
     "coef": 3
 }
