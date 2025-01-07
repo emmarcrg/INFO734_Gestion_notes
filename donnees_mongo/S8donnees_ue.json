@@ -1,40 +1,43 @@
 {
-    "_id": "UE801",
+    "code": "UE801",
     "nom": "Passerelle vers le parcours professionnel",
     "coef": 6,
     "id_matiere": [
-        "LANG801", 
-        "SHES802",
-        "SHES803"
+        "677d1feeaab2a65291edff34", 
+        "677d1feeaab2a65291edff35",
+        "677d1feeaab2a65291edff36"
     ]
 }
 
 {
-    "_id": "UE802",
+    "code": "UE802",
     "nom": "Stage",
-    "coef": 6
+    "coef": 6,
+    "id_matiere": [
+        "677d1feeaab2a65291edff37"
+    ]
 }
 
 {
-    "_id": "UE803",
+    "code": "UE803",
     "nom": "Données et aide à la décision",
     "coef": 7,
     "id_matiere": [
-        "DATA831", 
-        "DATA832",
-        "INFO831",
-        "PROJ831"
+        "677d1feeaab2a65291edff38", 
+        "677d1feeaab2a65291edff39",
+        "677d1feeaab2a65291edff3a",
+        "677d1feeaab2a65291edff3b"
     ]
 }
 
 {
-    "_id": "UE804",
+    "code": "UE804",
     "nom": "Informatique et Conception",
     "coef": 9,
     "id_matiere": [
-        "INFO832", 
-        "INFO833",
-        "INFO834",
-        "ISOC831"
+        "677d1feeaab2a65291edff3d", 
+        "677d1feeaab2a65291edff3e",
+        "677d1feeaab2a65291edff3f",
+        "677d1feeaab2a65291edff40"
     ]
 }

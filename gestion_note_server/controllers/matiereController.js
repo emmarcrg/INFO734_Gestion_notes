@@ -15,9 +15,12 @@ export const ajouterMatiere = async (req, res) => {
 // Récupérer toutes les matières
 export const getMatieres = async (req, res) => {
   try {
+    console.log('Connexion à MongoDB et récupération des matières...');
     const matieres = await Matiere.find();
+    console.log('Matières récupérées :', matieres);
     res.json(matieres);
   } catch (err) {
+    console.log('Erreur lors de la récupération des matières :', err);
     res.status(500).json({ error: 'Erreur lors de la récupération des matières.' });
   }
 };

@@ -1,10 +1,10 @@
 {
-    "_id": "S7",
+    "code": "S7",
     "nom": "Semestre 7",
     "id_ue":[
-        "UE701",
-        "UE702",
-        "UE703",
-        "UE704"
+        "677d2134aab2a65291edff43",
+        "677d2134aab2a65291edff44",
+        "677d2134aab2a65291edff45",
+        "677d2134aab2a65291edff46"
     ]
 }

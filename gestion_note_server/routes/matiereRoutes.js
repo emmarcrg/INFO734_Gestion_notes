@@ -4,9 +4,9 @@ import { ajouterMatiere, getMatieres } from '../controllers/matiereController.js
 const router = express.Router();
 
 // Ajouter une matière
-router.post('/', ajouterMatiere);
+router.post('/ajouterMatiere', ajouterMatiere);
 
 // Récupérer toutes les matières
-router.get('/', getMatieres);
+router.get('/getMatieres', getMatieres);
 
 export default router;
