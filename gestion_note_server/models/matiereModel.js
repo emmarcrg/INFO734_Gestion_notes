@@ -1,9 +1,10 @@
 import mongoose from 'mongoose';
 
 const matiereSchema = new mongoose.Schema({
+  code: { type: String, required: true },
   nom: { type: String, required: true },
-  coef: { type: Number, required: true },
-  ue: { type: String, required: true },
-}, { timestamps: true });
+  coef: { type: String, required: true },
+},);
 
-export const Matiere = mongoose.model('Matiere', matiereSchema);
+export const Matiere = mongoose.model('Matiere', matiereSchema, 'matiere');
+export default Matiere;

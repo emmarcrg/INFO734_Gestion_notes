@@ -1,4 +1,5 @@
 import { Matiere } from '../models/matiereModel.js';
+// import mongoose from 'mongoose';
 
 // Ajouter une matière
 export const ajouterMatiere = async (req, res) => {
@@ -15,9 +16,14 @@ export const ajouterMatiere = async (req, res) => {
 // Récupérer toutes les matières
 export const getMatieres = async (req, res) => {
   try {
+    console.log('Connexion à MongoDB et récupération des matières...');
+    //const db = mongoose.connection.db; // récupère la connexion à mongo
+    //const matieres = await db.collection('matiere').find().toArray() ;
     const matieres = await Matiere.find();
+    console.log('Matières récupérées :', matieres);
     res.json(matieres);
   } catch (err) {
+    console.log('Erreur lors de la récupération des matières :', err);
     res.status(500).json({ error: 'Erreur lors de la récupération des matières.' });
   }
 };

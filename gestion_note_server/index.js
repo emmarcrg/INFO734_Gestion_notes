@@ -14,7 +14,8 @@ try {
   const credentials = fs.readFileSync(filePath, 'utf8').split('\n');
   const username = credentials[0].trim();
   const password = credentials[1].trim();
-  mongoUri = `mongodb+srv://${username}:${password}@emmaxelle.ygq51.mongodb.net/gestion_notes?retryWrites=true&w=majority`;
+  console.log(username, password);
+  mongoUri = `mongodb+srv://${username}:${password}@emmaxelle.ygq51.mongodb.net/Gestion_notes?retryWrites=true&w=majority`;
 } catch (err) {
   console.error('Erreur de lecture du fichier login.txt :', err);
   process.exit(1);
@@ -33,16 +34,16 @@ mongoose
   .catch((err) => console.error('Erreur de connexion à MongoDB :', err));
 
 // Routes API
-app.use('/api/notes', noteRoutes);
-app.use('/api/matieres', matiereRoutes);
+app.use('/notes', noteRoutes);
+app.use('/matieres', matiereRoutes);
 
 // Servir les fichiers Angular compilés
-const browserDistFolder = resolve(dirname(fileURLToPath(import.meta.url)), '../gestion_note/dist/browser');
-app.use(express.static(browserDistFolder));
+// const browserDistFolder = resolve(dirname(fileURLToPath(import.meta.url)), '../gestion_note/dist/browser');
+// app.use(express.static(browserDistFolder));
 
 // Rediriger toutes les autres routes vers Angular
 app.get('*', (req, res) => {
-  res.sendFile(join(browserDistFolder, 'index.html'));
+  res.send("yo c'est moi");
 });
 
 app.listen(PORT, () => {
