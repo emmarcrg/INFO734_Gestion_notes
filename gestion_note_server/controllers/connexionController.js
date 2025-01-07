@@ -1,19 +1,6 @@
 import { Connexion } from '../models/connexionModel.js';
 
-
-// Ajouter une personne => à faire
-/*export const ajouterMatiere = async (req, res) => {
-  const { id, login, mdp_crypte } = req.body;
-  try {
-    const nouvelleMatiere = new Matiere({ nom, coef, ue });
-    const matiereSauvegardee = await nouvelleMatiere.save();
-    res.status(201).json(matiereSauvegardee);
-  } catch (err) {
-    res.status(500).json({ error: 'Erreur lors de l’ajout de la matière.' });
-  }
-};*/
-
-// Récupérer tles informations d'un utilisateur
+// Récupérer toutes les informations d'un utilisateur
 export const getPersonnes = async (req, res) => {
   try {
     console.log('Connexion à MongoDB et récupération des personnes...');
@@ -23,5 +10,20 @@ export const getPersonnes = async (req, res) => {
   } catch (err) {
     console.log('Erreur lors de la récupération des personnes :', err);
     res.status(500).json({ error: 'Erreur lors de la récupération des personnes.' });
+  }
+};
+
+// Récupérer une personne par login
+export const getPersonneByLogin = async (req, res) => {
+  const { login } = req.params;
+  try {
+    const personne = await Connexion.findOne({ login });
+    if (!personne) {
+      return res.status(404).json({ error: 'Utilisateur non trouvé.' });
+    }
+    res.json({ message: 'Utilisateur trouvé.', user: personne });
+  } catch (err) {
+    console.log('Erreur lors de la récupération de l\'utilisateur :', err);
+    res.status(500).json({ error: 'Erreur lors de la récupération de l\'utilisateur.' });
   }
 };

@@ -1,5 +1,5 @@
 import express from 'express';
-import { getPersonnes } from '../controllers/connexionController.js';
+import { getPersonnes, getPersonneByLogin } from '../controllers/connexionController.js';
 
 const router = express.Router();
 
@@ -8,5 +8,8 @@ const router = express.Router();
 
 // Récupérer toutes les matières
 router.get('/getPersonnes', getPersonnes);
+
+// Authentification 
+router.get('/getPersonne/:login', getPersonneByLogin);
 
 export default router;

@@ -5,8 +5,7 @@ const connexionSchema = new mongoose.Schema({
   nom: { type: String, required: true },
   prenom: { type: String, required: true },
   login: { type: String, required: true },
-  mdp_crypte: { type: String, required: true },
+  mdp_cryptee: { type: String, required: true }
 },);
 
 export const Connexion = mongoose.model('Connexion', connexionSchema, 'eleve');
-export default Connexion;

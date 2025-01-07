@@ -7,12 +7,12 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ConnexionService {
-  private apiUrl = 'http://localhost:4000/api';
+  private apiUrl = 'http://localhost:4000/connexion';
 
   constructor(private http: HttpClient) { }
 
   getPersonnes(): Observable<any> {
-    return this.http.get<any[]>(`${this.apiUrl}/connexion/`).pipe(
+    return this.http.get<any[]>(`${this.apiUrl}/getPersonnes`).pipe(
       map(matieres => matieres.map(matiere => ({
         id: matiere.id,
         nom: matiere.nom,
@@ -22,8 +22,8 @@ export class ConnexionService {
       })))
     );
   }
-  authenticate(login: string, password: string): Observable<any> { 
-    return this.http.post<any>(`${this.apiUrl}/auth`, { login, password }); 
-  }
-
+  
+  getPersonneByLogin(login: string): Observable<any> { 
+    return this.http.get<any>(`${this.apiUrl}/getPersonne/${login}`); 
+    }
 }

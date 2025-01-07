@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ConnexionService } from './connexion.service';  // Assure-toi d'importer le bon service
+import { ConnexionService } from '../connexion.service';  
 
 @Component({
     selector: 'app-login',
@@ -18,7 +18,7 @@ export class LoginComponent {
   constructor(private connexionService: ConnexionService, private router: Router) {}
 
   onLogin() {
-    this.connexionService.authenticate(this.email, this.password).subscribe({
+    this.connexionService.getPersonneByLogin(this.email).subscribe({
       next: (response) => {
         console.log('Logged in successfully:', response);
         this.navigateToAcceuil();
