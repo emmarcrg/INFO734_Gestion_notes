@@ -1,5 +1,4 @@
 import { Matiere } from '../models/matiereModel.js';
-// import mongoose from 'mongoose';
 
 // Ajouter une matière
 export const ajouterMatiere = async (req, res) => {

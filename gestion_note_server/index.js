@@ -6,6 +6,7 @@ import { dirname, join, resolve } from 'node:path';
 import fs from 'fs';
 import noteRoutes from './routes/noteRoutes.js';
 import matiereRoutes from './routes/matiereRoutes.js';
+import ueRoutes from './routes/ueRoutes.js';
 
 const filePath = join(dirname(fileURLToPath(import.meta.url)), 'login.txt');
 let mongoUri = '';
@@ -35,10 +36,7 @@ mongoose
 // Routes API
 app.use('/notes', noteRoutes);
 app.use('/matieres', matiereRoutes);
-
-// Servir les fichiers Angular compilés
-// const browserDistFolder = resolve(dirname(fileURLToPath(import.meta.url)), '../gestion_note/dist/browser');
-// app.use(express.static(browserDistFolder));
+app.use('/ues', ueRoutes);
 
 // Rediriger toutes les autres routes vers Angular
 app.get('*', (req, res) => {

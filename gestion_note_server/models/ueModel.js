@@ -7,5 +7,5 @@ const ueSchema = new mongoose.Schema({
     id_matiere: { type: mongoose.Schema.Types.ObjectId, ref: 'Matiere', required: true },
 }, { timestamps: true });
 
-export const Ue = mongoose.model('Ue', ueSchema, 'ue');
-export default Ue;
+export const UE = mongoose.model('Ue', ueSchema, 'ue');
+export default UE;
