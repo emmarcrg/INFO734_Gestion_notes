@@ -9,7 +9,7 @@
         <button
           type="button"
           *ngFor="let semestre of semestres"
-          (click)="selectionner_semestre(semestre.code)"
+          (click)="charger_ues_matieres(semestre.code)"
           [class.selected]="semestre_selectionne === semestre.code">
           {{ semestre.nom }}
         </button>
@@ -22,12 +22,12 @@
       <select
         id="matiere"
         [(ngModel)]="matiere_selectionnee"
-        [disabled]="!semestre_selectionne">
-        <option *ngFor="let matiere of recuperer_matieres()" [value]="matiere._id">
-          {{ matiere.nom }}
+        [disabled]="!semestre_selectionne || matieres.length === 0">
+        <option *ngFor="let matiere of matieres" [value]="matiere._id">
+          {{ matiere.code }}
         </option>
-        <option *ngIf="!semestre_selectionne" disabled>
-          Veuillez d'abord sélectionner un semestre
+        <option *ngIf="!matieres.length" disabled>
+          Aucune matière disponible
         </option>
       </select>
     </div>

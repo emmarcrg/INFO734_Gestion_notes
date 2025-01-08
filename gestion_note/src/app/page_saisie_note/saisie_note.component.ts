@@ -3,23 +3,27 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NoteService } from '../services/note.service';
+import { forkJoin } from 'rxjs'; // pour attendre que toutes les requêtes API soient faites
 
 interface Matiere {
-  nom: string;
   _id: string;
+  code: string;
+  nom: string;
+  id_ue: string;
 }
 
 interface UE {
   _id: string;
+  code: string;
   nom: string;
   coef: number;
-  id_matiere: string;
+  id_semestre: string;
 }
 
 interface Semestre {
+  _id: string;
   code: string;
   nom: string;
-  id_ue: string[];
 }
 
 @Component({
@@ -30,70 +34,93 @@ interface Semestre {
   imports: [CommonModule, FormsModule, RouterModule],
 })
 export class SaisieComponent implements OnInit {
-  semestre_selectionne: string | null = null; // On sélectionne un semestre par son code
+  semestre_selectionne: string | null = null; // on affiche les codes des semestres
   matiere_selectionnee: string | null = null;
   note: number | null = null;
 
-  matieres: Matiere[] = []; // Liste de toutes les matières
-  ues: UE[] = []; // Liste de toutes les unités d'enseignement
-  semestres: Semestre[] = []; // Liste des semestres avec leurs unités
+  matieres: Matiere[] = [];
+  ues: UE[] = [];
+  semestres: Semestre[] = [];
   message: string = '';
 
-  constructor(private noteService: NoteService) {}
+  constructor(private noteService: NoteService) {
+    console.log('NoteService chargé.');
+  }
 
   ngOnInit(): void {
-    // Charger les semestres, UE et matières depuis l'API
-    this.noteService.getMatieres().subscribe(
-      (data: { semestres: Semestre[]; ues: UE[]; matieres: Matiere[] }) => {
-        this.semestres = data.semestres;
-        this.ues = data.ues;
-        this.matieres = data.matieres;
+    this.charger_semestres();
+  }
+
+  charger_semestres(): void {
+    this.noteService.getSemestres().subscribe(
+      (semestres: Semestre[]) => {
+        this.semestres = semestres;
       },
       (error) => {
-        console.error('Erreur lors du chargement des données :', error);
-        this.message = "Erreur lors du chargement des données.";
+        console.error('Erreur lors du chargement des semestres :', error);
+        this.message = 'Erreur lors du chargement des semestres.';
       }
     );
   }
 
-  selectionner_semestre(semestre: string): void {
+  charger_ues_matieres(semestre: string): void {
+    console.log('Semestre sélectionné :', semestre);
     this.semestre_selectionne = semestre;
-    this.matiere_selectionnee = null;
-    this.note = null;
-    this.message = '';
-  }
+    // on récupère les UEs du semestre sélectionné
+    const semestre_selectionne = this.semestres.find((s) => s.code === semestre);
+    if (!semestre_selectionne) {
+      this.message = 'Semestre non trouvé.';
+      return;
+    }
 
-  recuperer_matieres(): Matiere[] {
-    if (!this.semestre_selectionne) return [];
+    // on récupère l'id du semestre
+    const id_semestre = semestre_selectionne._id;
 
-    // Trouver le semestre sélectionné
-    const semestre = this.semestres.find((s) => s.code === this.semestre_selectionne);
-    if (!semestre) return [];
+    // on récupère la liste des ues depuis l'API
+    this.noteService.getUE(id_semestre).subscribe(
+      (ues: UE[]) => {
+        if (ues.length === 0) {
+          this.message = 'Aucune UE trouvée pour l\'id semestre spécifié.';
+          console.log("Aucune UE trouvée pour le semestre :", semestre_selectionne.code);
+          return;
+        }
 
-    // Récupérer les UEs du semestre
-    const ues_du_semestre = this.ues.filter((ue) => semestre.id_ue.includes(ue._id));
+        const matiereObservables = ues.map((ue: UE) =>
+          this.noteService.getMatieres(ue._id)
+        );
 
-    // Récupérer les matières liées aux UEs
-    const matieres_ids = ues_du_semestre.map((ue) => ue.id_matiere);
-    return this.matieres.filter((matiere) => matieres_ids.includes(matiere._id));
-  }
+        forkJoin(matiereObservables).subscribe(
+          (results: Matiere[][]) => {
+            // Combinez toutes les matières
+            this.matieres = results.flat();
+            console.log('Matières mises à jour :', this.matieres);
+          },
+          (error) => {
+            console.error('Erreur lors de la récupération des matières :', error);
+            this.message = 'Erreur lors de la récupération des matières.';
+          }
+        );
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des UEs :', error);
+        this.message = 'Erreur lors de la récupération des UEs.';
+      }
+  );
+}
 
   handleSubmit(): void {
     if (this.semestre_selectionne && this.matiere_selectionnee && this.note !== null) {
-      const id_eleve = "6763e0dc447b0bff6457cc2f"; // Exemple d'id élève
-      const matiere = this.matieres.find(
-        (m) => m._id === this.matiere_selectionnee
-      );
+      const id_eleve = '6763e0dc447b0bff6457cc2f'; // à récupérer depuis la page de connexion
+      const matiere = this.matieres.find((m) => m._id === this.matiere_selectionnee);
 
       if (!matiere) {
         this.message = 'Matière sélectionnée invalide.';
         return;
       }
 
-      const ue = this.ues.find((ue) => ue.id_matiere === matiere._id);
-      const coef = ue ? ue.coef : 1; // Récupérer le coefficient depuis l'UE
+      const coef = 1; // voir si on permet de modifier le coef depuis le formulaire plus tard
 
-      // Appeler la méthode du service pour ajouter la note
+      // on ajoute la note au serveur via l'API
       this.noteService.ajouterNote(id_eleve, matiere._id, this.note, coef).subscribe(
         (response: any) => {
           this.message = `Note de ${response.note} pour ${response.matiere.nom} ajoutée avec succès !`;
