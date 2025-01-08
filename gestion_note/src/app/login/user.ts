@@ -2,6 +2,7 @@ export interface User {
     identifiant: string;
     nom: string;
     prenom: string;
-    mdp: string;
+    login: string;
+    password: string;
     semestre: string;
   }

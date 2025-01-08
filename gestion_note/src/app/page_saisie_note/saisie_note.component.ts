@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 import { NoteService } from '../services/note.service';
 import { forkJoin } from 'rxjs'; // pour attendre que toutes les requêtes API soient faites
+import { UserService } from '../user.service'; // Chemin relatif vers le service UserService
+import { User } from '../login/user'; // Chemin relatif vers l'interface User
 
 interface Matiere {
   _id: string;
@@ -43,8 +46,11 @@ export class SaisieComponent implements OnInit {
   semestres: Semestre[] = [];
   message: string = '';
 
-  constructor(private noteService: NoteService) {
+  user: User | null = null;
+
+  constructor(private noteService: NoteService, private userService: UserService, private router : Router) {
     console.log('NoteService chargé.');
+    this.user = this.userService.getUser();
   }
 
   ngOnInit(): void {
@@ -133,5 +139,17 @@ export class SaisieComponent implements OnInit {
     } else {
       this.message = 'Veuillez remplir tous les champs.';
     }
+  }
+
+  navigateToSaisieNote() {
+    this.router.navigate(['/page_saisie_note']);
+  }
+
+  navigateToAffichageNote() {
+    this.router.navigate(['/page_affichage_notes']);
+  }
+
+  navigateToAccueil() {
+    this.router.navigate(['/accueil']);
   }
 }

@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NoteService } from '../services/note.service';
+import { UserService } from '../user.service';
+import { User } from '../login/user';
+import { Router } from '@angular/router';
 import { forkJoin, Observable } from 'rxjs';
 
 interface Matiere {
@@ -36,7 +39,7 @@ interface Semestre {
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
 })
-export class AffichageComponent implements OnInit {
+export class AffichageComponent implements OnInit{
   id_eleve: string = '6763e0dc447b0bff6457cc2f'; // Exemple d'ID élève
   semestres: Semestre[] = []; // Liste des semestres disponibles
   ues: UE[] = []; // UEs du semestre sélectionné
@@ -49,8 +52,11 @@ export class AffichageComponent implements OnInit {
   moyenne_eleve: number = 0; // Moyenne générale de l'élève
   note_plus_haute: number = 0; // Note la plus haute
   note_plus_basse: number = 0; // Note la plus basse
+  user: User | null = null;
 
-  constructor(private noteService: NoteService) {}
+  constructor(private userService: UserService, private router : Router,private noteService: NoteService) {
+    this.user = this.userService.getUser();
+  }
 
   ngOnInit(): void {
     this.chargerSemestres();
@@ -157,5 +163,17 @@ export class AffichageComponent implements OnInit {
       this.note_plus_haute = 0;
       this.note_plus_basse = 0;
     }
+  }
+
+  navigateToSaisieNote() {
+    this.router.navigate(['/page_saisie_note']);
+  }
+
+  navigateToAffichageNote() {
+    this.router.navigate(['/page_affichage_notes']);
+  }
+
+  navigateToAccueil() {
+    this.router.navigate(['/accueil']);
   }
 }

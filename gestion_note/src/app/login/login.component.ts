@@ -2,52 +2,57 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { AuthService } from './auth.service';  // On fait en sorte de créer un objet d'authentification
+import { ConnexionService } from '../connexion.service';
+import { User } from './user';
+import { UserService } from '../user.service';
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css'],
-    standalone : true,
-    imports: [CommonModule, FormsModule]
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
+  standalone: true,
+  imports: [CommonModule, FormsModule],
 })
-
 export class LoginComponent {
   email: string = '';
   password: string = '';
 
-  predefinedUsers: { email: string, password: string }[] = [
-    { email: 'axelle@example.com', password: '0000' },
-    { email: 'emma@example.com', password: '1234' }
-  ];
-
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private connexionService: ConnexionService,
+    private userService: UserService,
+    private router: Router
+  ) {}
 
   onLogin() {
-   
-    const user = this.predefinedUsers.find(user => user.email === this.email && user.password === this.password);
-    if(user) {
-      //this.authService.login(this.email, this.password).subscribe({
-        //next: () => {
+    this.connexionService.getPersonneByLogin(this.email).subscribe({
+      next: (response) => {
+        console.log('Logged in successfully:', response);
 
-          //console.log('Logged in successfully');
-          this.navigateToAcceuil();
-        //},
-        //error: (error) => {
-        //  console.error('Error logging in:', error);
-          //alert('Invalid username or password');
-        //}
-      //});
-    }else {
-      alert('Invalid username or password');
-    }
+        const user: User = {
+          identifiant: response.user._id,
+          nom: response.user.nom,
+          prenom: response.user.prenom,
+          login: response.user.login,
+          password: response.user.password,
+          semestre: '0',
+        };
+        console.log('La personne ' + user.nom + ' ' + user.prenom + ' est connectée');
+        
+        this.userService.setUser(user);
+        this.navigateToAcceuil();
+      },
+      error: (error) => {
+        console.error('Error logging in:', error);
+        alert('Invalid username or password');
+      },
+    });
   }
 
   navigateToSignup() {
     this.router.navigate(['/signup']);
   }
 
-  navigateToAcceuil(){
+  navigateToAcceuil() {
     this.router.navigate(['/accueil']);
   }
 }
