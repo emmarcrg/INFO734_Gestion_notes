@@ -1,4 +1,10 @@
 <p>accueil works!</p>
+
+<!-- accueil.component.html -->
+<div *ngIf="user">
+  <h1>Bienvenue, {{ user.prenom }} {{ user.nom }} !</h1>
+</div>
+
 <footer class="menu-footer">
     <ul class="nav-menu">
       <li><a routerLink="/page_accueil" routerLinkActive="active">Accueil</a></li>
