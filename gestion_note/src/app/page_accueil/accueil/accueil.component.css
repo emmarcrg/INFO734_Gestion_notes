@@ -3,10 +3,10 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: #333;
+  background-color: #f8a89f;
   padding: 10px 0;
   text-align: center;
-  box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px -2px 5px white;
 }
 
 .nav-menu {
@@ -21,7 +21,7 @@
   margin: 0 15px;
 }
 
-.nav-menu a {
+.nav-menu button {
   text-decoration: none;
   color: white;
   font-size: 18px;
@@ -31,4 +31,25 @@
 .nav-menu a:hover {
   background-color: #555;
   border-radius: 5px;
+}
+
+.button-container { 
+  display: flex; 
+  justify-content: space-between; /* Espace entre les boutons */ 
+  gap: 10px; /* Espace entre les boutons */ 
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #f07e49;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;  /* Ajoute un espace en haut du bouton */
+}
+
+button:hover {
+  background-color: #E6735E;
 }

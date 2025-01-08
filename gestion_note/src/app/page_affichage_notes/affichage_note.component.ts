@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NoteService } from '../services/note.service';
+import { UserService } from '../user.service';
+import { User } from '../login/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-affichage_note',
@@ -18,13 +21,16 @@ export class AffichageComponent {
   note_plus_haute: number = 0;
   note_plus_basse: number = 0;
   rang_eleve: number = 1;
+  user: User | null = null;
 
   matieres_semestre: any[] = [];
   ues: any[] = [];
   id_eleve: string = '6763e0dc447b0bff6457cc2f'; // Exemple d'ID élève
 
-  constructor(private noteService: NoteService) {}
-
+ 
+  constructor(private userService: UserService, private router : Router, private noteService: NoteService) {
+    this.user = this.userService.getUser();
+  }
   selectionner_semestre(semestre: number): void {
     this.semestre_selectionne = semestre;
 
@@ -65,4 +71,16 @@ export class AffichageComponent {
       return grouped;
     }, []);
   }
+  
+    navigateToSaisieNote() {
+      this.router.navigate(['/page_saisie_note']);
+    }
+  
+    navigateToAffichageNote() {
+      this.router.navigate(['/page_affichage_notes']);
+    }
+  
+    navigateToAccueil() {
+      this.router.navigate(['/accueil']);
+    }
 }
