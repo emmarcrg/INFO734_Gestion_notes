@@ -1,78 +1,81 @@
-{
-    "code": "LANG801",
-    "nom": "Anglais",
-    "coef": 3
-}
-
-{
-    "code": "SHES802",
-    "nom": "Système de Management Intégré QSE",
-    "coef": 1.5
-}
-
-{
-    "code": "SHES803",
-    "nom": "Théorie des organisations",
-    "coef": 1.5
-}
-
-{
-    "code": "PROJ801",
-    "nom": "Stage assistant ingénieur",
-    "coef": 6
-}
-
-{
-    "code": "DATA831",
-    "nom": "Big data",
-    "coef": 1
-}
-
-{
-    "code": "DATA832",
-    "nom": "Machine Learning",
-    "coef": 2.5
-}
-
-{
-    "code": "INFO831",
-    "nom": "Informatique décisionnelle",
-    "coef": 2.5
-}
-
-{
-    "code": "PROJ831",
-    "nom": "Projet Informatique Données et Usages",
-    "coef": 1.5
-}
-
-{
-    "code": "PROJ832",
-    "nom": "Flux de Donnéées et Accès Concurrents",
-    "coef": 1.5
-}
-
-{
-    "code": "INFO832",
-    "nom": "Qualité et tests logiciel",
-    "coef": 2.5
-}
-
-{
-    "code": "INFO833",
-    "nom": "Systèmes distibués à large échelle",
-    "coef": 2.5
-}
-
-{
-    "code": "INFO834",
-    "nom": "Base de données distribuées",
-    "coef": 2.5
-}
-
-{
-    "code": "ISOC831",
-    "nom": "Dimension métiers",
-    "coef": 1.5
-}
-
+[
+    {
+      "code": "LANG801",
+      "nom": "Anglais",
+      "coef": 3,
+      "id_ue": { "$oid": "677e7947eedcd9c056821e9e" }
+    },
+    {
+      "code": "SHES802",
+      "nom": "Système de Management Intégré QSE",
+      "coef": 1.5,
+      "id_ue": { "$oid": "677e7947eedcd9c056821e9e" }
+    },
+    {
+      "code": "SHES803",
+      "nom": "Théorie des organisations",
+      "coef": 1.5,
+      "id_ue": { "$oid": "677e7947eedcd9c056821e9e" }
+    },
+    {
+      "code": "PROJ801",
+      "nom": "Stage assistant ingénieur",
+      "coef": 6,
+      "id_ue": { "$oid": "677e7947eedcd9c056821e9f" }
+    },
+    {
+      "code": "DATA831",
+      "nom": "Big data",
+      "coef": 1,
+      "id_ue": { "$oid": "677d9f19aab2a65291edff79" }
+    },
+    {
+      "code": "DATA832",
+      "nom": "Machine Learning",
+      "coef": 2.5,
+      "id_ue": { "$oid": "677d9f19aab2a65291edff79" }
+    },
+    {
+      "code": "INFO831",
+      "nom": "Informatique décisionnelle",
+      "coef": 2.5,
+      "id_ue": { "$oid": "677e7947eedcd9c056821ea0" }
+    },
+    {
+      "code": "PROJ831",
+      "nom": "Projet Informatique Données et Usages",
+      "coef": 1.5,
+      "id_ue": { "$oid": "677e7947eedcd9c056821ea0" }
+    },
+    {
+      "code": "PROJ832",
+      "nom": "Flux de Données et Accès Concurrents",
+      "coef": 1.5,
+      "id_ue": { "$oid": "677e7947eedcd9c056821ea0" }
+    },
+    {
+      "code": "INFO832",
+      "nom": "Qualité et tests logiciel",
+      "coef": 2.5,
+      "id_ue": { "$oid": "677e7947eedcd9c056821ea1" }
+    },
+    {
+      "code": "INFO833",
+      "nom": "Systèmes distribués à large échelle",
+      "coef": 2.5,
+      "id_ue": { "$oid": "677e7947eedcd9c056821ea1" }
+    },
+    {
+      "code": "INFO834",
+      "nom": "Base de données distribuées",
+      "coef": 2.5,
+      "id_ue": { "$oid": "677e7947eedcd9c056821ea1" }
+    },
+    {
+      "code": "ISOC831",
+      "nom": "Dimension métiers",
+      "coef": 1.5,
+      "id_ue": { "$oid": "677e7947eedcd9c056821ea1" }
+    }
+  ]
+  

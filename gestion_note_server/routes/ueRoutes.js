@@ -5,6 +5,6 @@ const router = express.Router();
 
 
 // Récupérer toutes les ues
-router.get('/getUE', getUE);
+router.get('/getUE/:id_semestre', getUE);
 
 export default router;

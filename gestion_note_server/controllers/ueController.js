@@ -1,10 +1,18 @@
 import {UE} from '../models/ueModel.js';
 
-// Récupérer toutes les ues
+// Récupérer les ue en fonction d'un id de semestre
 export const getUE = async (req, res) => {
  try {
-    console.log('Connexion à MongoDB et récupération des UE...');
-    const ues = await UE.find();
+    const { id_semestre } = req.params; // on récupère l'id_semestre passé en paramètre
+    console.log('id_semestre reçu :', id_semestre);
+    if (!id_semestre) {
+      return res.status(400).json({ error: 'id_semestre invalide.' });
+    }
+    // on récupère les ues correspondant à l'id_ue passé
+    const ues = await UE.find({
+      'id_semestre': id_semestre
+    });
+        
     console.log('UEs récupérées :', ues);
     res.json(ues);
   } catch (err) {

@@ -50,3 +50,8 @@ gestion_note/server
 gestion_note/dist
 
 gestion_note/.angular
+
+gestion_note_server/node_modules
+node_modules
+
+

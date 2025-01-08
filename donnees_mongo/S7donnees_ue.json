@@ -2,42 +2,26 @@
     "code": "UE701",
     "nom": "Passerelle vers le parcours professionnel",
     "coef": 6,
-    "id_matiere": [
-        "677d1fe7aab2a65291edff28", 
-        "677d1fe7aab2a65291edff29",
-        "677d1fe7aab2a65291edff2a"
-    ]
+    "id_semestre": { "$oid": "677d2182aab2a65291edff4e" }
 }
 
 {
     "code": "UE702",
     "nom": "Mathématiques et Données",
     "coef": 8,
-    "id_matiere": [
-        "677d1fe7aab2a65291edff2b", 
-        "677d1fe7aab2a65291edff2c",
-        "677d1fe7aab2a65291edff2d"
-    ]
+    "id_semestre": { "$oid": "677d2182aab2a65291edff4e" }
 }
 
 {
     "code": "UE703",
     "nom": "Informatique et Conception",
     "coef": 7,
-    "id_matiere": [
-        "677d1fe7aab2a65291edff2e", 
-        "677d1fe7aab2a65291edff2f",
-        "677d1fe7aab2a65291edff30"
-    ]
+    "id_semestre": { "$oid": "677d2182aab2a65291edff4e" }
 }
 
 {
     "code": "UE704",
     "nom": "Visualisation et Gouvernance",
     "coef": 9,
-    "id_matiere": [
-        "677d1fe7aab2a65291edff31", 
-        "677d1fe7aab2a65291edff32",
-        "677d1fe7aab2a65291edff33"
-    ]
+    "id_semestre": { "$oid": "677d2182aab2a65291edff4e" }
 }

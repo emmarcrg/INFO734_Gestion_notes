@@ -7,6 +7,6 @@ const router = express.Router();
 router.post('/ajouterMatiere', ajouterMatiere);
 
 // Récupérer toutes les matières
-router.get('/getMatieres', getMatieres);
+router.get('/getMatieres/:id_ue', getMatieres);
 
 export default router;
