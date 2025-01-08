@@ -33,6 +33,7 @@ export class LoginComponent {
           nom: response.user.nom,
           prenom: response.user.prenom,
           login: response.user.login,
+          password: response.user.password,
           semestre: '0',
         };
         console.log('La personne ' + user.nom + ' ' + user.prenom + ' est connectée');
